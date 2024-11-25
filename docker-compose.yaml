@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: daily_challenges_api
+    environment:
+      DATABASE_URL: mysql+pymysql://user:pass@mysql/daily_challenges
+      TZ: UTC
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app/app
+    networks:
+      - testnet
+
+networks:
+  testnet:
+    external: true
+    name: testnet
+    
